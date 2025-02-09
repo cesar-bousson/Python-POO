@@ -26,3 +26,64 @@ Voiture afin d’afficher un message personnalisé. Faites démarrer votre
 voiture et votre moto.
 
 '''
+
+class Vehicule:
+    def __init__(self, marque, modele, annee, prix):
+        self.marque = marque
+        self.modele = modele
+        self.annee = annee
+        self.prix = prix
+
+    def informationsVehicule(self):
+        print(f"Marque : {self.marque}")
+        print(f"Modèle : {self.modele}")
+        print(f"Année : {self.annee}")
+        print(f"Prix : {self.prix} €")
+
+    def demarrer(self):
+        print("Attention, je roule")
+
+
+class Voiture(Vehicule):
+    def __init__(self, marque, modele, annee, prix):
+        super().__init__(marque, modele, annee, prix)
+        self.portes = 4
+
+    def informationsVehicule(self):
+        super().informationsVehicule()
+        print(f"Nombre de portes : {self.portes}")
+
+    def demarrer(self):
+        print("La voiture démarre : vroom vroom !")
+
+
+class Moto(Vehicule):
+    def __init__(self, marque, modele, annee, prix):
+        super().__init__(marque, modele, annee, prix)
+        self.roue = 2
+
+    def informationsVehicule(self):
+        super().informationsVehicule()
+        print(f"Nombre de roues : {self.roue}")
+
+    def demarrer(self):
+        print("La moto démarre : braaap braaap !")
+
+
+#objets
+voiture = Voiture("Toyota", "Corolla", 2023, 25000)
+moto = Moto("Yamaha", "MT-07", 2022, 8000)
+
+# Appel méthodes informationsVehicule
+print("Informations de la voiture :")
+voiture.informationsVehicule()
+
+print("\nInformations de la moto :")
+moto.informationsVehicule()
+
+# Appel méthodes demarrer
+print("\nDémarrage de la voiture :")
+voiture.demarrer()
+
+print("\nDémarrage de la moto :")
+moto.demarrer()

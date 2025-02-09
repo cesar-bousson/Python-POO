@@ -28,6 +28,66 @@ afficher toutes les tâches et afficher les tâches à faire.
 
 class Tache:
     def __init__(self, titre, description, statut="à faire"):
+        self._titre = titre
+        self._description = description
+        self._enregistrer = False
+        self._statut = statut if statut in ["à faire", "terminé"] else "à faire"
+
+    def changer_statut(self, nouveau_statut):
+        """Change le statut de la tâche et met à jour l'état d'enregistrement."""
+        if nouveau_statut in ["à faire", "terminé"]:
+            self._statut = nouveau_statut
+            self._enregistrer = nouveau_statut == "terminé"
+        else:
+            raise ValueError("Statut invalide. Utilisez 'à faire' ou 'terminé'.")
+
+    def __str__(self):
+        return f"Titre: {self._titre}, Description: {self._description}, Statut: {self._statut}"
+
+
+class ListeDeTaches:
+    def __init__(self):
+        self.taches = []
+
+    def ajouter_tache(self, tache: Tache):
+        """Ajoute une tâche à la liste."""
+        if isinstance(tache, Tache):
+            self.taches.append(tache)
+        else:
+            raise TypeError("Seuls les objets de type 'Tache' peuvent être ajoutés.")
+
+    def lister_taches(self):
+        """Retourne la liste des tâches sous forme de chaîne."""
+        return [str(tache) for tache in self.taches]
+
+    def taches_terminees(self):
+        """Retourne la liste des tâches terminées."""
+        return [tache for tache in self.taches if tache._statut == "terminé"]
+
+
+# Exemple d'utilisation
+tache1 = Tache("Faire les courses", "Acheter des fruits et légumes")
+tache2 = Tache("Sport", "Aller courir 5km", "terminé")
+tache3 = Tache("Lecture", "Lire un chapitre de mon livre")
+
+liste1 = ListeDeTaches()
+liste1.ajouter_tache(tache1)
+liste1.ajouter_tache(tache2)
+liste1.ajouter_tache(tache3)
+
+print("Toutes les tâches :")
+print("\n".join(liste1.lister_taches()))
+
+print("\nTâches terminées :")
+print("\n".join(str(tache) for tache in liste1.taches_terminees()))
+
+
+
+# -------------------------------------------------CORRECTION --------------------------------------------
+
+'''
+class Tache:
+    def __init__(self, titre, description, statut="à faire"):
         self.titre = titre
         self.description = description
         self.statut = statut
@@ -94,3 +154,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
