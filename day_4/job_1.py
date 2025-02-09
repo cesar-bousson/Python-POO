@@ -29,3 +29,41 @@ de l’élève en console.
 
 '''
 
+class Personne:
+    def __init__(self, age=14):
+        self.age = age
+
+    def afficherAge(self):
+        return self.age
+
+    def bonjour(self):
+        return "Hello"
+
+    def modifierAge(self, nouvel_age):
+        self.age = nouvel_age
+
+
+class Eleve(Personne):
+    def __init__(self):
+        super().__init__()
+    
+    def allerEnCours(self):
+        return "Je vais en cours"
+
+    def afficherAge(self):
+        return f"j'ai {self.age} ans"
+    
+class Professeur: 
+    def __init__(self, matiere):
+        self.__matiere = matiere
+
+    def enseigner(self):
+        return "Le cours va commencer."
+
+eleve1 = Eleve()
+
+'''exo 1'''
+print(eleve1.afficherAge())
+
+
+#--------------------------
